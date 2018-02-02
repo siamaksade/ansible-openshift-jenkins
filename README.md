@@ -31,7 +31,7 @@ name: Example Playbook
 hosts: localhost
 tasks:
 - import_role:
-    name: openshift_jenkins
+    name: siamaksade.openshift_jenkins
   vars:
     jenkins_image_tag: "v3.7"
     jenkins_image_force_import: true

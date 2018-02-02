@@ -1,4 +1,5 @@
 Ansible Role: Jenkins on OpenShift
+[![Build Status](https://travis-ci.org/siamaksade/ansible-openshift-jenkins.svg?branch=master)](https://travis-ci.org/siamaksade/ansible-openshift-jenkins)
 =========
 
 Ansible Role for deploying Jenkins CI engine on OpenShift

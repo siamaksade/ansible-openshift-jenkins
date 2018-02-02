@@ -43,9 +43,7 @@
   when: >
     install_jenkins|failed and 
     jenkins_image_tag != 'latest' and
-    jenkins_image_repository is defined and
-    jenkins_image_repository is not none and
-    jenkins_image_repository|trim() != ""
+    jenkins_image_force_import
 
 - name: deploy jenkins persistent from template
   shell: "{{ openshift_cli }} new-app jenkins-persistent -l app=jenkins -p JENKINS_IMAGE_STREAM_TAG=jenkins:{{ jenkins_image_tag }} -p MEMORY_LIMIT=1Gi -n {{ project_name }}"

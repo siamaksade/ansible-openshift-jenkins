@@ -13,22 +13,22 @@
   when: jenkins_project_result|failed
 
 - name: assign user as project admin
-  shell: "oc adm policy add-role-to-user admin {{ project_admin }} -n {{ project_name }}"
+  shell: "{{ openshift_cli }} adm policy add-role-to-user admin {{ project_admin }} -n {{ project_name }}"
   ignore_errors: true
-  when: >
-    jenkins_project_result|failed and
-    project_admin is defined and
-    project_admin is not none and
-    project_admin|trim() != ""
+  when:
+    - jenkins_project_result|failed
+    - project_admin is defined
+    - project_admin is not none
+    - project_admin|trim() != ""
 
 - name: annotate jenkins project {{ project_name }}
-  shell: "oc annotate --overwrite namespace {{ project_name }} {{ project_annotations }}"
+  shell: "{{ openshift_cli }} annotate --overwrite namespace {{ project_name }} {{ project_annotations }}"
   ignore_errors: true
-  when: >
-    jenkins_project_result|failed and
-    project_annotations is defined and
-    project_annotations is not none and
-    project_annotations|trim() != ""
+  when:
+    - jenkins_project_result|failed
+    - project_annotations is defined
+    - project_annotations is not none
+    - project_annotations|trim() != ""
 
 # deploy jenkins
 - name: check if jenkins exists

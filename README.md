@@ -10,6 +10,7 @@ Role Variables
 
 |Variable                    | Default Value     | Description   |
 |----------------------------|-------------------|---------------|
+|`jenkins_service_name`      | jenkins           | Jenkins service name on OpenShift  |
 |`jenkins_max_mem`           | 2Gi               | Max memory allocated to Jenkins container |
 |`jenkins_min_mem`           | 512Mi             | Min memory allocated to Jenkins container |
 |`jenkins_max_cpu`           | 1                 | Max cpu allocated to Jenkins container |

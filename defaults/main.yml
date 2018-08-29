@@ -15,17 +15,11 @@ openshift_cli: oc
 jenkins_max_mem: 2Gi
 jenkins_min_mem: 512Mi
 
-jenkins_max_cpu: 2
+jenkins_max_cpu: 1
 jenkins_min_cpu: 200m
 
 jenkins_image_tag: latest
-<<<<<<< HEAD
-jenkins_image_force_import: false
-
-jenkins_service_name: jenkins
-=======
 
 jenkins_service_name: jenkins
 
 ephemeral: true
->>>>>>> ocp-3.10-1

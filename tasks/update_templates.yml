@@ -1,0 +1,21 @@
+---
+## Update Jenkins Templates
+
+- name: check if user is cluster-admin
+  shell: "{{ openshift_cli }} get project default"
+  ignore_errors: true
+  register: cluster_admin_result
+
+- name: update jenkins templates
+  block:
+    - template:
+        src: "{{ role_path }}/templates/jenkins-persistent-template.yml.j2"
+        dest: /tmp/jenkins-persistent-template.yml
+        force: true
+    - template:
+        src: "{{ role_path }}/templates/jenkins-ephemeral-template.yml.j2"
+        dest: /tmp/jenkins-ephemeral-template.yml
+        force: true
+    - shell: "{{ openshift_cli }} apply -f /tmp/jenkins-persistent-template.yml -n openshift"
+    - shell: "{{ openshift_cli }} apply -f /tmp/jenkins-ephemeral-template.yml -n openshift"
+  when: cluster_admin_result|succeeded

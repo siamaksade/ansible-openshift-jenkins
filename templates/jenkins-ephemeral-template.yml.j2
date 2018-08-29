@@ -70,6 +70,8 @@ objects:
             value: ${JENKINS_SERVICE_NAME}
           - name: JNLP_SERVICE_NAME
             value: ${JNLP_SERVICE_NAME}
+          - name: DISABLE_ADMINISTRATIVE_MONITORS
+            value: ${DISABLE_ADMINISTRATIVE_MONITORS}
           image: ' '
           imagePullPolicy: IfNotPresent
           livenessProbe:
@@ -196,3 +198,7 @@ parameters:
   displayName: Jenkins ImageStreamTag
   name: JENKINS_IMAGE_STREAM_TAG
   value: jenkins:2
+- description: Whether to perform memory intensive, possibly slow, synchronization with the Jenkins Update Center on start.  If true, the Jenkins core update monitor and site warnings monitor are disabled.
+  displayName: Disable memory intensive administrative monitors
+  name: DISABLE_ADMINISTRATIVE_MONITORS
+  value: "{{ jenkins_template_disable_admin_monitors | lower }}"

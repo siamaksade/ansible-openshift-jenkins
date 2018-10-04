@@ -18,7 +18,7 @@ Role Variables
 |`jenkins_min_mem`           | 512Mi             | Min memory allocated to Jenkins container |
 |`jenkins_max_cpu`           | 1                 | Max cpu allocated to Jenkins container |
 |`jenkins_min_cpu`           | 200m              | Min cpu allocated to Jenkins container |
-|`jenkins_image_tag`         | v3.10             | Jenkins image tag to deploy. Specify tag for either [OpenShift Container Platform](https://access.redhat.com/containers/?tab=tags#/registry.access.redhat.com/openshift3/jenkins-2-rhel7) or [OpenShift Origin](https://hub.docker.com/r/openshift/jenkins-2-centos7/tags/)|
+|`jenkins_image_tag`         | 2                 | Jenkins image tag to deploy. Specify tag for either [OpenShift Container Platform](https://access.redhat.com/containers/?tab=tags#/registry.access.redhat.com/openshift3/jenkins-2-rhel7) or [OpenShift Origin](https://hub.docker.com/r/openshift/jenkins-2-centos7/tags/)|
 |`project_name`              | jenkins           | OpenShift project name for the Jenkins container  |
 |`project_display_name`      | Jenkins           | OpenShift project display name for the Jenkins container  |
 |`project_desc`              | Jenkins CI Engine | OpenShift project description for the Jenkins container |

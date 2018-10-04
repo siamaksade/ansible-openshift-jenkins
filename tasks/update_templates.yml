@@ -8,7 +8,6 @@
 
 - name: update jenkins templates
   block:
-    - shell: "{{ openshift_cli }} import-image jenkins:v3.10 --from=registry.access.redhat.com/openshift3/jenkins-2-rhel7:v3.10 -n openshift --confirm"
     - template:
         src: "{{ role_path }}/templates/jenkins-persistent-template.yml.j2"
         dest: /tmp/jenkins-persistent-template.yml

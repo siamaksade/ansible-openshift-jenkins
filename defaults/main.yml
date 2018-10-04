@@ -13,7 +13,7 @@ jenkins_max_cpu: 1
 jenkins_min_cpu: 200m
 
 jenkins_image_repository: registry.access.redhat.com/openshift3/jenkins-2-rhel7
-jenkins_image_tag: latest
+jenkins_image_tag: v3.10
 jenkins_image_force_import: false
 
 jenkins_service_name: jenkins

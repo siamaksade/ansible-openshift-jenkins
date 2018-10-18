@@ -197,7 +197,7 @@ parameters:
 - description: Name of the ImageStreamTag to be used for the Jenkins image.
   displayName: Jenkins ImageStreamTag
   name: JENKINS_IMAGE_STREAM_TAG
-  value: jenkins:2
+  value: jenkins:{{ jenkins_image_tag }}
 - description: Whether to perform memory intensive, possibly slow, synchronization with the Jenkins Update Center on start.  If true, the Jenkins core update monitor and site warnings monitor are disabled.
   displayName: Disable memory intensive administrative monitors
   name: DISABLE_ADMINISTRATIVE_MONITORS

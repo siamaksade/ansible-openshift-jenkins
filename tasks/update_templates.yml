@@ -18,4 +18,4 @@
         force: true
     - shell: "{{ openshift_cli }} apply -f /tmp/jenkins-persistent-template.yml -n openshift"
     - shell: "{{ openshift_cli }} apply -f /tmp/jenkins-ephemeral-template.yml -n openshift"
-  when: cluster_admin_result|succeeded
+  when: cluster_admin_result is succeeded

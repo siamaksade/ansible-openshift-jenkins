@@ -10,8 +10,7 @@ Role Variables
 
 |Variable                    | Default Value     | Description   |
 |----------------------------|-------------------|---------------|
-|`update_jenkins_templates`  | false             | Update default Jenkins templates and adjust cpu and mem resources (requires cluster admin) |
-|`jenkins_template_disable_admin_monitors` | false | Disable cpu-intensive update tasks on Jenkins bootstrap which pronolgs the start up time |
+|`disable_admin_monitors`    | false | Disable cpu-intensive update tasks on Jenkins bootstrap which pronolgs the start up time |
 |`deploy_jenkins`            | true              | Deploy Jenkins |
 |`jenkins_service_name`      | jenkins           | Jenkins service name on OpenShift  |
 |`jenkins_max_mem`           | 2Gi               | Max memory allocated to Jenkins container |

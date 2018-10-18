@@ -1,9 +1,7 @@
 ---
 
 deploy_jenkins: true
-update_jenkins_templates: false
-
-jenkins_template_disable_admin_monitors: false
+disable_admin_monitors: false
 
 project_name: jenkins
 project_display_name: Jenkins

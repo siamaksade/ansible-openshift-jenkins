@@ -30,7 +30,7 @@ When listing this role, make sure to pin the version of the role via one of the 
 
 ```
 - src: siamaksade.openshift_jenkins
-  version: 1.0
+  version: 1.3.0
 ```  
 
 The following tables shows the version combinations that are tested and verified:

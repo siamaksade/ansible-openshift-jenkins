@@ -30,12 +30,13 @@
 
 - name: create jenkins project {{ project_name }}
   shell: "{{ openshift_cli }} new-project {{ project_name }} --display-name='{{ project_display_name }}' --description='{{ project_desc }}'"
-  when: jenkins_project_result is failed
+  when: deploy_jenkins and jenkins_project_result is failed
 
 - name: assign user as project admin
   shell: "{{ openshift_cli }} adm policy add-role-to-user admin {{ project_admin }} -n {{ project_name }}"
   ignore_errors: true
   when:
+    - deploy_jenkins
     - jenkins_project_result is failed
     - project_admin is defined
     - project_admin is not none
@@ -45,6 +46,7 @@
   shell: "{{ openshift_cli }} annotate --overwrite namespace {{ project_name }} {{ project_annotations }}"
   ignore_errors: true
   when:
+    - deploy_jenkins
     - jenkins_project_result is failed
     - project_annotations is defined
     - project_annotations is not none
@@ -59,13 +61,13 @@
 
 - name: deploy jenkins persistent from template
   shell: "{{ openshift_cli }} new-app --template=jenkins-persistent -l app=jenkins -p JENKINS_SERVICE_NAME={{ jenkins_service_name }} -p JENKINS_IMAGE_STREAM_TAG=jenkins:{{ jenkins_image_tag }} -p DISABLE_ADMINISTRATIVE_MONITORS={{ disable_admin_monitors|bool|lower }} -n {{ project_name }}"
-  when: jenkins_installed_result is failed and not ephemeral
+  when: deploy_jenkins and jenkins_installed_result is failed and not ephemeral
 
 - name: deploy jenkins ephemeral from template
   shell: "{{ openshift_cli }} new-app --template=jenkins-ephemeral -l app=jenkins -p JENKINS_SERVICE_NAME={{ jenkins_service_name }} -p JENKINS_IMAGE_STREAM_TAG=jenkins:{{ jenkins_image_tag }} -p DISABLE_ADMINISTRATIVE_MONITORS={{ disable_admin_monitors|bool|lower }} -n {{ project_name }}"
-  when: jenkins_installed_result is failed and ephemeral
+  when: deploy_jenkins and jenkins_installed_result is failed and ephemeral
 
 - name: set jenkins cpu and mem resources
   shell: "{{ openshift_cli }} set resources dc/{{ jenkins_service_name }} --limits=cpu={{ jenkins_max_cpu }},memory={{ jenkins_max_mem }} --requests=cpu={{ jenkins_min_cpu }},memory={{ jenkins_min_mem }} -n {{ project_name }}"
-  when: jenkins_installed_result is failed
+  when: deploy_jenkins and jenkins_installed_result is failed
   ignore_errors: true

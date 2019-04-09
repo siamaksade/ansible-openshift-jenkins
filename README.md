@@ -22,7 +22,9 @@ Role Variables
 |`project_display_name`      | Jenkins           | OpenShift project display name for the Jenkins container  |
 |`project_desc`              | Jenkins CI Engine | OpenShift project description for the Jenkins container |
 |`project_annotations`       | -                 | OpenShift project annotations for the Jenkins container |
-|`openshift_cli`             | oc                | OpenShift CLI command and arguments (e.g. auth)       | 
+|`openshift_cli`             | oc                | OpenShift CLI command and arguments (e.g. auth)       |
+|`update_jenkins_templates`  | false             | Updates the provided templates in the openshift namespace (as long as the user has permissions) and set's the default resource request/limits for the template |
+
 
 OpenShift Version Compatibility
 ------------
@@ -41,6 +43,9 @@ The following tables shows the version combinations that are tested and verified
 | 1.1.x   | 3.9.x   |
 | 1.2.x   | 3.10.x  |
 | 1.3.x   | 3.11.x  |
+| 1.4.x   | 3.11.x  |
+
+__NOTE__: OCP 4.x samples operator will replace the Jenkins template after this role changes it, so that option will not work in OCP 4.x clusters with the sample operator enabled.
 
 Note that if a version combination is not listed above, it does NOT mean that it won't work on that 
 version. The above table is merely the combinations that we have verified and tested.

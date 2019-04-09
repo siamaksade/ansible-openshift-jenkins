@@ -21,3 +21,6 @@ jenkins_image_tag: 2
 jenkins_service_name: jenkins
 
 ephemeral: true
+
+update_jenkins_templates: false
+caniupdatetemplates: false

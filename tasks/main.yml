@@ -1,4 +1,24 @@
 ---
+## Update Jenkins templates
+
+# If we can modify the default templates, let's do it if requested
+- name: Verify user can modify openshift templates
+  command: "{{ openshift_cli }} auth can-i update templates -n openshift"
+  register: caniupdatetemplates
+  when: update_jenkins_templates
+
+- name: Update default templates
+  include_tasks: replace_template.yml
+  with_items:
+    - jenkins-ephemeral.yml
+    - jenkins-persistent.yml
+  when: update_jenkins_templates and caniupdatetemplates.stdout == 'yes'
+
+- name: Show debug message if template could not be updated
+  debug: 
+    msg: "Jenkins templates could not be updated. User has not enough permissions to udpate them"
+  when: update_jenkins_templates and caniupdatetemplates.stdout != 'yes'
+
 ## Deploy Jenkins
 
 # create project

@@ -1,0 +1,7 @@
+---
+- name: Replace template
+  block:
+  - template:
+      src: "{{ item }}.j2"
+      dest: "/tmp/{{ item }}"
+  - command: "{{ openshift_cli }} replace -f /tmp/{{item}} -n openshift"
